@@ -5,7 +5,6 @@ import * as dotenv from "dotenv";
 dotenv.config();
 const GOERLI_RPC_URL = process.env.ALCHEMY_GOERLI_RPC_URL;
 const GOERLI_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
-const GOERLI_ADDRESS = process.env.WALLET_ADDRES || "";
 const DELEGATE_REGISTRY_ADDRESS = process.env.GOERLI_CONTRACT_ADDRESS || "";
 
 const config: HardhatUserConfig = {

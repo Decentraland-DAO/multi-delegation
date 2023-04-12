@@ -1,18 +1,14 @@
 import { ethers } from "hardhat";
 
+//npx hardhat --network goerli run scripts/deploy.ts
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-  const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
 
-  const lockedAmount = ethers.utils.parseEther("1");
+  const DelegatesRegistry = await ethers.getContractFactory("DelegateRegistry");
+  const delegateRegistry = await DelegatesRegistry.deploy();
 
-  const Lock = await ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+  await delegateRegistry.deployed();
 
-  await lock.deployed();
-
-  console.log(`Lock with 1 ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`);
+  console.log(`Deployed DelegatesRegistry to ${delegateRegistry.address}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
