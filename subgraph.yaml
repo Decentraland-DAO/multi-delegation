@@ -1,0 +1,30 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: DelegateRegistry
+    network: goerli
+    source:
+      address: "0x409e43758A375c68435e084086277Ce77BfCEBEA"
+      abi: DelegateRegistry
+      startBlock: 8819076
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - ClearAllDelegates
+        - ClearDelegate
+        - SetDelegate
+      abis:
+        - name: DelegateRegistry
+          file: ./abis/DelegateRegistry.json
+      eventHandlers:
+        - event: ClearAllDelegates(indexed address,indexed bytes32)
+          handler: handleClearAllDelegates
+        - event: ClearDelegate(indexed address,indexed bytes32,indexed address)
+          handler: handleClearDelegate
+        - event: SetDelegate(indexed address,indexed bytes32,indexed address)
+          handler: handleSetDelegate
+      file: ./src/delegate-registry.ts

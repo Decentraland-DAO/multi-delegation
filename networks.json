@@ -1,0 +1,8 @@
+{
+  "goerli": {
+    "DelegateRegistry": {
+      "address": "0x409e43758A375c68435e084086277Ce77BfCEBEA",
+      "startBlock": 8819076
+    }
+  }
+}
