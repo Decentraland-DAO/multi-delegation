@@ -1,6 +1,7 @@
+// @ts-ignore
 import { ethers } from "hardhat";
 
-//npx hardhat --network goerli run scripts/deploy.ts
+//npx hardhat run scripts/deploy.ts
 async function main() {
 
   const DelegatesRegistry = await ethers.getContractFactory("DelegateRegistry");
