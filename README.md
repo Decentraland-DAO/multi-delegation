@@ -1,18 +1,11 @@
-# Sample Hardhat Project
+# MultiDelegation
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+# Graph
 
-Try running some of the following tasks:
+Run ` npm run codegen`
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.ts
-```
 
-# To run this locally
+# Hardhat & Contracts
 
 Create an .env file from .env.example
 
