@@ -1,28 +1,20 @@
-type ClearAllDelegates @entity(immutable: true) {
-  id: Bytes!
-  delegator: Bytes! # address
-  DelegateRegistry_id: Bytes! # bytes32
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Delegation @entity {
+  id: ID!
+  delegator: Bytes!
+  space: String!
+  delegate: Bytes!
+  timestamp: Int!
 }
 
-type ClearDelegate @entity(immutable: true) {
-  id: Bytes!
-  delegator: Bytes! # address
-  DelegateRegistry_id: Bytes! # bytes32
-  delegate: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Block @entity {
+  id: ID!
+  number: BigInt!
+  timestamp: BigInt!
 }
 
-type SetDelegate @entity(immutable: true) {
-  id: Bytes!
-  delegator: Bytes! # address
-  DelegateRegistry_id: Bytes! # bytes32
-  delegate: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Sig @entity {
+  id: ID!
+  account: Bytes!
+  msgHash: String!
+  timestamp: BigInt!
 }
