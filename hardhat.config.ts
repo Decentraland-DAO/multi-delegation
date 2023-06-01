@@ -4,17 +4,23 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 const GOERLI_RPC_URL = process.env.ALCHEMY_GOERLI_RPC_URL;
-const GOERLI_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
+const POLYGON_RPC_URL = process.env.ALCHEMY_POLYGON_RPC_URL;
+const PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || "";
 const DELEGATE_REGISTRY_ADDRESS = process.env.GOERLI_CONTRACT_ADDRESS || "";
 
 const config: HardhatUserConfig = {
   networks: {
     goerli: {
       url: GOERLI_RPC_URL,
-      accounts: [GOERLI_PRIVATE_KEY],
+      accounts: [PRIVATE_KEY]
     },
+    mumbai: {
+      chainId: 80001,
+      url: POLYGON_RPC_URL,
+      accounts: [PRIVATE_KEY]
+    }
   },
-  solidity: "0.8.17",
+  solidity: "0.8.17"
 };
 
 export default config;
@@ -26,7 +32,7 @@ task("createWallet", "print out address, public and private key").setAction(
     console.log({
       address: wallet.address,
       publicKey: wallet.publicKey,
-      privateKey: wallet.privateKey,
+      privateKey: wallet.privateKey
     });
   }
 );
@@ -36,7 +42,33 @@ task("getBalance")
   .setAction(async (taskArgs, hre) => {
     const provider = hre.ethers.getDefaultProvider("goerli");
     let balance = await provider.getBalance(taskArgs.address);
-    console.log("$ETH", hre.ethers.utils.formatEther(balance));
+    console.log("$TOKEN", hre.ethers.utils.formatEther(balance));
+  });
+
+task(
+  "getBalanceMumbai",
+  "Get the balance of a wallet in Polygon Mumbai Testnet"
+)
+  .addParam("address", "The wallet address")
+  .setAction(async (taskArgs, hre) => {
+    const { address } = taskArgs;
+    const networkConfig = hre.network.config;
+    const provider = new hre.ethers.providers.JsonRpcProvider(
+      "https://rpc.decentraland.org/mumbai",
+      {
+        name: hre.network.name,
+        chainId: networkConfig.chainId
+      }
+    );
+
+    try {
+      const balance = await provider.getBalance(address);
+      const balanceEth = hre.ethers.utils.formatEther(balance);
+      console.log(`Balance of wallet ${address}: ${balanceEth} TOKEN`);
+    } catch (error) {
+      console.error("Error retrieving address balance:", error);
+      throw error;
+    }
   });
 
 /**
@@ -137,4 +169,12 @@ task("clearAllDelegates", "Clear all delegate for a given project ID")
     await tx.wait();
 
     console.log(`Delegates removed.`);
+  });
+
+task("getFormattedProjectId")
+  .addParam("id", "The ID of the project")
+  .setAction(async (taskArgs, hre) => {
+    const { id } = taskArgs;
+    const formattedProjectId = hre.ethers.utils.formatBytes32String(id);
+    console.log("formattedProjectId", formattedProjectId);
   });

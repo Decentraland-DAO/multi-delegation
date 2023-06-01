@@ -2,7 +2,10 @@
 
 # Graph
 
+Copy the contents of `goerli-subgraph.yaml` or `mumbai-subgraph.yaml` to `subgraph.yaml`
 Run ` npm run codegen`
+
+Make sure the remaining scripts in the `package.json` are using the intended subgraph.
 
 
 # Hardhat & Contracts

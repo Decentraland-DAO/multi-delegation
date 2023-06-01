@@ -3,11 +3,11 @@
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
-    "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ andyesp/multi-delegation",
-    "create-local": "graph create --node http://localhost:8020/ andyesp/multi-delegation",
-    "remove-local": "graph remove --node http://localhost:8020/ andyesp/multi-delegation",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 andyesp/multi-delegation",
+    "build": "graph build ",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ 1emu/multi-delegation-polygon",
+    "create-local": "graph create --node http://localhost:8020/ 1emu/multi-delegation-polygon",
+    "remove-local": "graph remove --node http://localhost:8020/ 1emu/multi-delegation-polygon",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 1emu/multi-delegation-polygon",
     "test": "graph test"
   },
   "dependencies": {
