@@ -1,6 +1,7 @@
 import { HardhatUserConfig, task } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import * as dotenv from "dotenv";
+require('@nomicfoundation/hardhat-toolbox')
 
 dotenv.config();
 const GOERLI_RPC_URL = process.env.ALCHEMY_GOERLI_RPC_URL;
