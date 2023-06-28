@@ -31,7 +31,7 @@ describe("DelegateRegistry", () => {
     delegator2Registry = delegateRegistry.connect(delegator2);
   });
 
-  describe("for an empty project id", () => {
+  describe("for an invalid project id", () => {
     const INVALID_PROJECT_ID = "";
 
     it("should throw when setting a delegate", async () => {
